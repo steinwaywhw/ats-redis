@@ -74,5 +74,10 @@ int main(int argc, char **argv) {
     /* Disconnects and frees the context */
     redisFree(c);
 
+
+    char *target;
+    redisFormatCommand(&target, "SET %s %s", "hello", "world");
+    printf("%s", target);
+
     return 0;
 }
