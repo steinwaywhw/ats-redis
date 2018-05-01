@@ -1,11 +1,10 @@
 #include "share/atspre_staload.hats"
 staload "./redis.sats"
-staload _ = "./redis.dats"
 
 #define ATS_DYNLOADFLAG 0
 
-extern fun example (): void
-implement example () = let
+
+implement main0 () = let
     
     extern fun printf {ts:types} (fmt: string, args: ts): void = "mac#printf"
 
@@ -68,5 +67,3 @@ implement example () = let
 in
     redisFree c
 end
-
-implement main0 () = example ()

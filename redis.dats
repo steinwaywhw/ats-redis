@@ -23,7 +23,7 @@ end
 redisReply* redisCommandExn(redisContext* c, char* fmt, ...) {
     va_list vl;
     va_start(vl, fmt);
-    redisReply* r = redisvCommand(c, fmt, vl);
+    redisReply* r = (redisReply*)redisvCommand(c, fmt, vl);
     va_end(vl);
 
     if (r != NULL) return r;
@@ -65,7 +65,7 @@ $extfcall(string, "_redisContextErrStr", $UNSAFE.castvwtp1{ptr} c)
     Handle redisReply struct
  ************************************)
 
-%{^
+%{
 
 int                  _redisReplyGetType(redisReply* reply)     { return reply->type; }
 long long            _redisReplyGetInteger(redisReply* reply)  { return reply->integer; }

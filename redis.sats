@@ -225,7 +225,7 @@ redisCommand {ts:types} (c: !redisContext, fmt: string, args: ts): [l:addr] redi
 
 fun 
 redisCommandExn {ts:types} (c: !redisContext, fmt: string, args: ts): redisReply =
-"mac#redisCommandExn"
+"ext#redisCommandExn"
 
 fun 
 redisAppendCommand {ts:types} (c: !redisContext, fmt: string, args: ts): int = 
