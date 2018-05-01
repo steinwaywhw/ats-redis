@@ -1,8 +1,7 @@
 #include "share/atspre_staload.hats"
-staload "./redis.sats"
-
-#define ATS_DYNLOADFLAG 0
-
+#include "./mylibies.hats"
+#include "./mylibies_link.hats"
+#staload $REDIS
 
 implement main0 () = let
     

@@ -3,8 +3,11 @@
 CC=clang
 CCFLAGS=-fPIC -O2 -I$(PATSHOME) -I$(PATSHOME)/ccomp/runtime -g
 
-test: 
-	patscc -verbose --gline -o a.out test.dats redis.dats  -lhiredis
+testsrc: test.dats 
+	patscc -o a.out -lhiredis test.dats 
+
+testlib: libatsredis.a test.dats
+	patscc -o a.out -L$(PWD) -lhiredis -latsredis test.dats
 
 %_dats.c: %.dats 
 	patsopt -o $@ -d $^

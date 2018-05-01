@@ -1,7 +1,3 @@
-%{#
-#include "hiredis/hiredis.h"
-%} 
-
 staload TIME = "libats/libc/SATS/sys/time.sats"
 
 (************************************
@@ -203,7 +199,7 @@ redisReplyGetType (reply: !redisReply): redisReplyType
 overload .type with redisReplyGetType
 
 fun 
-redisReplyGetInteger (reply: !redisReply): int 
+redisReplyGetInteger (reply: !redisReply): llint 
 overload .integer with redisReplyGetInteger
 
 fun 
@@ -225,7 +221,7 @@ redisCommand {ts:types} (c: !redisContext, fmt: string, args: ts): [l:addr] redi
 
 fun 
 redisCommandExn {ts:types} (c: !redisContext, fmt: string, args: ts): redisReply =
-"ext#redisCommandExn"
+"mac#redisCommandExn"
 
 fun 
 redisAppendCommand {ts:types} (c: !redisContext, fmt: string, args: ts): int = 

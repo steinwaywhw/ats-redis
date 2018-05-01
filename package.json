@@ -1,0 +1,24 @@
+{
+  "name": "ats-redis",
+  "version": "0.13.3",
+  "description": "An ATS bindings of hiredis.",
+  "scripts": {
+    "install": "make libatsredis.a",
+    "uninstall": "make cleanall",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/steinwaywhw/ats-redis.git"
+  },
+  "keywords": [
+    "ats",
+    "redis"
+  ],
+  "author": "Steinway Wu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/steinwaywhw/ats-redis/issues"
+  },
+  "homepage": "https://github.com/steinwaywhw/ats-redis#readme"
+}

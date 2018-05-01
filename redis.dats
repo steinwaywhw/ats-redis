@@ -1,9 +1,8 @@
 #include "share/atspre_staload.hats"
-staload UNSAFE = "prelude/SATS/unsafe.sats"
 staload "./redis.sats"
+staload "./redis.hats"
 
 #define ATS_DYNLOADFLAG 0
-
 
 (************************************
     Exn Versions
@@ -18,7 +17,7 @@ in
     c
 end
 
-%{^
+%{
 
 redisReply* redisCommandExn(redisContext* c, char* fmt, ...) {
     va_list vl;
@@ -37,13 +36,12 @@ redisReply* redisCommandExn(redisContext* c, char* fmt, ...) {
     Handle redisContext struct
  ************************************)
 
-%{^
+%{
 
 int   _redisContextErr(redisContext* c)    { return c->err; }
 char* _redisContextErrStr(redisContext* c) { return c->errstr; }
 
 %}
-
 
 implement redisContextErr (c) = let 
     val err = $extfcall(int, "_redisContextErr", $UNSAFE.castvwtp1{ptr} c)
@@ -55,7 +53,6 @@ in
     | _ when err = REDIS_ERR_OOM      => RedisErrOom
     | _ when err = REDIS_ERR_OTHER    => RedisErrOther
 end
-
 
 implement redisContextErrStr (c) = 
 $extfcall(string, "_redisContextErrStr", $UNSAFE.castvwtp1{ptr} c)
@@ -90,7 +87,7 @@ end
 
 implement  
 redisReplyGetInteger (reply) = 
-$extfcall(int, "_redisReplyGetInteger", $UNSAFE.castvwtp1{ptr} reply)
+$extfcall(llint, "_redisReplyGetInteger", $UNSAFE.castvwtp1{ptr} reply)
 
 
 implement  
@@ -110,7 +107,7 @@ end
     Handle Pointer Nill
  ************************************)
 
-%{^
+%{
 
 int pointerIsNull (void *ptr)    { return ptr == NULL; }
 int pointerIsNotNull (void *ptr) { return ptr != NULL; }
