@@ -3,7 +3,7 @@
   "version": "0.13.3",
   "description": "An ATS bindings of hiredis.",
   "scripts": {
-    "install": "make libatsredis.a",
+    "install": "make libatsredis.a && make clean",
     "uninstall": "make cleanall",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
